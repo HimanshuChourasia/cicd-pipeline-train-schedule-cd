@@ -38,7 +38,7 @@ pipeline {
 }
     stage('Deploy to production') {
      input 'Deploy to production ?'
-     milestone label: 'build ready' ordinal: 1
+     milestone label: 'build ready', ordinal: 1
      when {
        branch 'master'
        }
