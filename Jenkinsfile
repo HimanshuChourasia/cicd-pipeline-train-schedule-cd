@@ -37,12 +37,12 @@ pipeline {
     }
 }
     stage('Deploy to production') {
-     input 'Deploy to production ?'
-     milestone label: 'build ready', ordinal: 1
      when {
        branch 'master'
        }
      steps {
+     input 'Deploy to production ?'
+     milestone label: 'build ready', ordinal: 1
      withCredentials([usernamePassword(credentialsId: 'webserver_login', passwordVariable: 'USERPASS', usernameVariable: 'USERNAME')]) {
      sshPublisher(
        publishers: [
