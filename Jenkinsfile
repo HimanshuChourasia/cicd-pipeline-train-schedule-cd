@@ -44,8 +44,7 @@ pipeline {
        }
      steps {
      withCredentials([usernamePassword(credentialsId: 'webserver_login', passwordVariable: 'USERPASS', usernameVariable: 'USERNAME')]) {
-     sshPublisher
-     (
+     sshPublisher(
        publishers: [
        sshPublisherDesc(
         configName: 'Production', 
