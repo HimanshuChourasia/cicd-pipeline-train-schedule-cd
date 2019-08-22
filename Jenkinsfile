@@ -14,8 +14,7 @@ pipeline {
           }
         steps {
         withCredentials([usernamePassword(credentialsId: 'webserver_login', passwordVariable: 'USERPASS', usernameVariable: 'USERNAME')]) {
-        sshPublisher
-        (
+        sshPublisher(
           publishers: [
             sshPublisherDesc(
               configName: 'Staging', 
@@ -49,11 +48,11 @@ pipeline {
      (
        publishers: [
        sshPublisherDesc(
-        configName: 'Production',
+        configName: 'Production', 
         sshCredentials: [
-                username: "$USERNAME",
-                password: "$PASSWORD"
-              ],   
+          username: "$USERNAME",
+          password: "$PASSWORD"
+        ],
         transfers: [
            sshTransfer(
              execCommand: 'sudo /usr/bin/systemctl stop train-schedule && rm -rf  /opt/train-schedule && unzip -d /opt/train-schedule /tmp/train-schedule.zip && sudo /usr/bin/systemctl start train-schedule', 
@@ -69,4 +68,5 @@ pipeline {
         }
      }
    }
- }
+ }     
+  
